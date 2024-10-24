@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="form-container">
+    <h1>Create Donation Campaign</h1>
+    <form (ngSubmit)="createDonation()" class="donation-form">
+      <label for="title">Campaign Title</label>
+      <input type="text" [(ngModel)]="newDonation.title" name="title" placeholder="Campaign Title" required />
+      
+      <label for="description">Description</label>
+      <textarea [(ngModel)]="newDonation.description" name="description" placeholder="Description" required></textarea>
+      
+      <label for="amount">Goal Amount</label>
+      <input type="number" [(ngModel)]="newDonation.amount" name="amount" placeholder="Amount" required />
+      
+      <button type="submit">Create Campaign</button>
+    </form>
+
+    <h2>Donation Campaigns</h2>
+    <ul class="donation-list">
+      <li *ngFor="let donation of donations" class="donation-item">
+        <strong>{{ donation.title }}</strong> - {{ donation.description }}
+        <br />
+        Goal: ${{ donation.amount }} | Raised: ${{ donation.amount }}
+        <button (click)="deleteDonation(donation._id)">Delete</button>
+      </li>
+    </ul>
+  </div>
+</div>

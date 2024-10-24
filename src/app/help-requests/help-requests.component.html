@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="form-container">
+  <form (ngSubmit)="createHelpRequest()" class="help-request-form">
+    <h1>Help Requests</h1>
+    <label for="name">Your Name</label>
+    <input type="text" [(ngModel)]="newRequest.name" name="name" placeholder="Your Name" required />
+
+    <label for="description">Describe the Help Needed</label>
+    <textarea [(ngModel)]="newRequest.description" name="description" placeholder="Describe the help needed" required></textarea>
+
+    <label for="longitude">Longitude</label>
+    <input type="number" [(ngModel)]="newRequest.location.coordinates[0]" name="longitude" placeholder="Longitude" required />
+
+    <label for="latitude">Latitude</label>
+    <input type="number" [(ngModel)]="newRequest.location.coordinates[1]" name="latitude" placeholder="Latitude" required />
+
+    <button type="submit">Submit Request</button>
+  </form>
+
+  <ul class="help-request-list">
+    <li *ngFor="let request of helpRequests" class="help-request-item">
+      <strong>{{ request.name }}</strong>: {{ request.description }} <br />
+      Location: {{ request.location.coordinates[0] }}, {{ request.location.coordinates[1] }}
+      <button (click)="deleteHelpRequest(request._id)">Delete</button>
+    </li>
+  </ul>
+</div>
+</div>

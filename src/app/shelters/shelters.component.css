@@ -1,0 +1,80 @@
+/* Basic styling for the shelter form */
+.shelter-form {
+    max-width: 600px; /* Limit the width of the form */
+    margin: 0 auto; /* Center the form horizontally */
+    padding: 34px;
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
+    background-color: #f9f9f9; /* Light background */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  h1 {
+    text-align: center;
+    color: #333;
+  }
+  
+  .shelter-form input {
+    width: 100%; /* Full width inputs */
+    padding: 10px; /* Padding inside the inputs */
+    margin-bottom: 15px; /* Space between inputs */
+    border: 1px solid #ccc; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Increase font size */
+  }
+  
+  /* Button styling */
+  .shelter-form button {
+    background-color: #007bff; /* Blue background */
+    color: white; /* White text */
+    padding: 10px 15px; /* Padding for button */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+    font-size: 16px; /* Increase font size */
+  }
+  
+  .shelter-form button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* List styling */
+  .shelter-list {
+    list-style-type: none; /* Remove bullet points */
+    padding: 0; /* Remove padding */
+    max-width: 600px; /* Limit the width of the list */
+    margin: 20px auto; /* Center the list */
+  }
+  
+  .shelter-item {
+    padding: 15px; /* Padding for list items */
+    border: 1px solid #e0e0e0; /* Light gray border */
+    border-radius: 4px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between items */
+    background-color: #fff; /* White background */
+    transition: background-color 0.3s; /* Smooth transition */
+  }
+  
+  .shelter-item:hover {
+    background-color: #f1f1f1; /* Light gray on hover */
+  }
+  
+  /* Button styling for edit and delete */
+  .shelter-item button {
+    margin-left: 10px; /* Space between buttons */
+    background-color: #dc3545; /* Red background */
+    color: white; /* White text */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer on hover */
+  }
+  
+  .shelter-item button:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+  .form-container {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }

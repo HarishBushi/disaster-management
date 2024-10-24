@@ -1,0 +1,37 @@
+/* app.component.css */
+
+/* Basic styles for the app layout */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+/* Styles for the navigation links */
+nav {
+    background-color: #3498db; /* Light blue background for nav */
+    padding: 15px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 15px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+nav a:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+/* Styling for the router outlet */
+.router-outlet {
+    padding: 20px;
+}
