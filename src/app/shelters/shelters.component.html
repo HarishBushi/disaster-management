@@ -1,74 +1,72 @@
-
-<!-- Wrapper div to center the form and list -->
 <div class="shelter-container">
   <div class="form-container">
+    <form (ngSubmit)="editMode ? updateShelter() : createShelter()" class="shelter-form">
+      <h1>{{ editMode ? 'Edit Shelter' : 'Shelter Locations' }}</h1>
 
-  <form (ngSubmit)="createShelter()" class="shelter-form">
-    <h1>Shelter Locations</h1>
+      <label for="name">Shelter Name</label>
+      <input
+        id="name"
+        type="text"
+        [(ngModel)]="newShelter.name"
+        name="name"
+        placeholder="Shelter Name"
+        required
+      />
 
-    <label for="name">Shelter Name</label>
-    <input
-      id="name"
-      type="text"
-      [(ngModel)]="newShelter.name"
-      name="name"
-      placeholder="Shelter Name"
-      required
-    />
-    
-    <label for="address">Address</label>
-    <input
-      id="address"
-      type="text"
-      [(ngModel)]="newShelter.address"
-      name="address"
-      placeholder="Address"
-      required
-    />
-    
-    <label for="longitude">Longitude</label>
-    <input
-      id="longitude"
-      type="number"
-      [(ngModel)]="newShelter.location.coordinates[0]"
-      name="longitude"
-      placeholder="Longitude"
-      required
-    />
-    
-    <label for="latitude">Latitude</label>
-    <input
-      id="latitude"
-      type="number"
-      [(ngModel)]="newShelter.location.coordinates[1]"
-      name="latitude"
-      placeholder="Latitude"
-      required
-    />
-    
-    <label for="capacity">Capacity</label>
-    <input
-      id="capacity"
-      type="number"
-      [(ngModel)]="newShelter.capacity"
-      name="capacity"
-      placeholder="Capacity"
-      required
-    />
-    
-    <button type="submit">Add Shelter</button>
-  </form>
+      <label for="address">Address</label>
+      <input
+        id="address"
+        type="text"
+        [(ngModel)]="newShelter.address"
+        name="address"
+        placeholder="Address"
+        required
+      />
 
-  <ul class="shelter-list">
-    <li *ngFor="let shelter of shelters" class="shelter-item">
-      <strong>{{ shelter.name }}</strong> - {{ shelter.address }} 
-      <br />
-      Coordinates: {{ shelter.location.coordinates[0] }}, {{ shelter.location.coordinates[1] }} 
-      <br />
-      Capacity: {{ shelter.capacity }}
-      <button (click)="editShelter(shelter)">Edit</button>
-      <button (click)="deleteShelter(shelter._id)">Delete</button>
-    </li>
-  </ul>
+      <label for="longitude">Longitude</label>
+      <input
+        id="longitude"
+        type="number"
+        [(ngModel)]="newShelter.location.coordinates[0]"
+        name="longitude"
+        placeholder="Longitude"
+        required
+      />
+
+      <label for="latitude">Latitude</label>
+      <input
+        id="latitude"
+        type="number"
+        [(ngModel)]="newShelter.location.coordinates[1]"
+        name="latitude"
+        placeholder="Latitude"
+        required
+      />
+
+      <label for="capacity">Capacity</label>
+      <input
+        id="capacity"
+        type="number"
+        [(ngModel)]="newShelter.capacity"
+        name="capacity"
+        placeholder="Capacity"
+        required
+      />
+
+      <button type="submit">{{ editMode ? 'Update Shelter' : 'Add Shelter' }}</button>
+      <button *ngIf="editMode" type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+
+    <ul class="shelter-list">
+      <li *ngFor="let shelter of shelters" class="shelter-item">
+        <strong>{{ shelter.name }}</strong> - {{ shelter.address }} 
+        <br />
+        Coordinates: {{ shelter.location.coordinates[0] }}, {{ shelter.location.coordinates[1] }} 
+        <br />
+        Capacity: {{ shelter.capacity }}
+        <button (click)="editShelter(shelter)">Edit</button>
+        <button (click)="deleteShelter(shelter._id)">Delete</button>
+      </li>
+    </ul>
   </div>
 </div>

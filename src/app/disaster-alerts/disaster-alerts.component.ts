@@ -16,8 +16,9 @@ export class DisasterAlertsComponent implements OnInit {
     location: { type: 'Point', coordinates: [0, 0] },
     createdAt: new Date(),
   };
+  editMode = false;
+  alertToEditId: string | null = null;
 
-  // constructor(private disasterService: DisasterService) {}
   constructor(private disasterService: DisasterService, private router: Router) {}
 
   ngOnInit(): void {
@@ -33,14 +34,47 @@ export class DisasterAlertsComponent implements OnInit {
   createAlert(): void {
     this.disasterService.createAlert(this.newAlert).subscribe(() => {
       this.loadAlerts();
-      this.newAlert = { type: '', details: '', location: { type: 'Point', coordinates: [0, 0] }, createdAt: new Date() };
-    });
-  }
-  deleteDonation(id: string): void {
-    this.disasterService.deleteAlert(id).subscribe(() => {
-      this.alerts = this.alerts.filter(d => d._id !== id);
+      this.resetForm();
     });
   }
 
-  // Additional methods for update and delete can be added here
+  deleteAlert(id: string): void {
+    this.disasterService.deleteAlert(id).subscribe(() => {
+      this.alerts = this.alerts.filter(alert => alert._id !== id);
+    });
+  }
+
+  // Populate the form with alert data for editing
+  editAlert(alert: any): void {
+    this.editMode = true;
+    this.alertToEditId = alert._id;
+    this.newAlert = {
+      type: alert.type,
+      details: alert.details,
+      location: { ...alert.location },
+      createdAt: alert.createdAt,
+    };
+  }
+
+  // Update the existing alert
+  updateAlert(): void {
+    if (!this.alertToEditId) return;
+
+    this.disasterService.updateAlert(this.alertToEditId, this.newAlert).subscribe(() => {
+      this.loadAlerts();
+      this.resetForm();
+    });
+  }
+
+  // Cancel the edit and reset the form
+  cancelEdit(): void {
+    this.resetForm();
+  }
+
+  // Reset form and clear edit mode
+  private resetForm(): void {
+    this.newAlert = { type: '', details: '', location: { type: 'Point', coordinates: [0, 0] }, createdAt: new Date() };
+    this.editMode = false;
+    this.alertToEditId = null;
+  }
 }

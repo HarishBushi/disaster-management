@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'; // Import Router
+import { Router } from '@angular/router';
 import { ShelterService } from '../services/shelter.service';
 
 @Component({
@@ -16,8 +16,10 @@ export class SheltersComponent implements OnInit {
   };
 
   shelters: any[] = [];
+  editMode = false;
+  shelterToEditId: string | null = null;
 
-  constructor(private shelterService: ShelterService, private router: Router) {} // Inject Router
+  constructor(private shelterService: ShelterService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchShelters();
@@ -32,24 +34,49 @@ export class SheltersComponent implements OnInit {
   createShelter(): void {
     this.shelterService.createShelter(this.newShelter).subscribe((shelter) => {
       this.shelters.push(shelter);
-      this.newShelter = {
-        name: '',
-        address: '',
-        location: { type: 'Point', coordinates: [0, 0] },
-        capacity: 0,
-      };
-      // Optionally navigate to the shelters list after adding
+      this.resetForm();
       this.router.navigate(['/shelters']);
     });
   }
 
   editShelter(shelter: any): void {
-    // Logic to edit shelter
+    this.editMode = true;
+    this.shelterToEditId = shelter._id;
+    this.newShelter = {
+      name: shelter.name,
+      address: shelter.address,
+      location: { type: 'Point', coordinates: [...shelter.location.coordinates] },
+      capacity: shelter.capacity,
+    };
+  }
+
+  updateShelter(): void {
+    if (!this.shelterToEditId) return;
+
+    this.shelterService.updateShelter(this.shelterToEditId, this.newShelter).subscribe(() => {
+      this.fetchShelters(); // Refresh list after update
+      this.resetForm();
+    });
   }
 
   deleteShelter(id: string): void {
     this.shelterService.deleteShelter(id).subscribe(() => {
       this.shelters = this.shelters.filter(s => s._id !== id);
     });
+  }
+
+  cancelEdit(): void {
+    this.resetForm();
+  }
+
+  private resetForm(): void {
+    this.newShelter = {
+      name: '',
+      address: '',
+      location: { type: 'Point', coordinates: [0, 0] },
+      capacity: 0,
+    };
+    this.editMode = false;
+    this.shelterToEditId = null;
   }
 }

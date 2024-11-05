@@ -21,4 +21,7 @@ export class HelpRequestService {
   deleteHelpRequest(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  updateHelpRequest(id:any,donation: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, donation);
+  }
 }

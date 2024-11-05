@@ -1,6 +1,5 @@
-
 import { Component, OnInit } from '@angular/core';
-import { HelpRequestService } from '../services/HelpRequestService';  // Ensure you have this service
+import { HelpRequestService } from '../services/HelpRequestService';
 
 @Component({
   selector: 'app-help-requests',
@@ -15,6 +14,8 @@ export class HelpRequestsComponent implements OnInit {
   };
 
   helpRequests: any[] = [];
+  editMode = false;
+  requestToEditId: string | null = null;
 
   constructor(private helpRequestService: HelpRequestService) {}
 
@@ -31,11 +32,7 @@ export class HelpRequestsComponent implements OnInit {
   createHelpRequest(): void {
     this.helpRequestService.createHelpRequest(this.newRequest).subscribe((request) => {
       this.helpRequests.push(request);
-      this.newRequest = {
-        name: '',
-        description: '',
-        location: { type: 'Point', coordinates: [0, 0] },
-      };
+      this.resetForm();
     });
   }
 
@@ -45,5 +42,36 @@ export class HelpRequestsComponent implements OnInit {
     });
   }
 
-  // Optional: Add editHelpRequest logic here
+  // Set form with data for editing
+  editHelpRequest(request: any): void {
+    this.editMode = true;
+    this.requestToEditId = request._id;
+    this.newRequest = {
+      name: request.name,
+      description: request.description,
+      location: { type: 'Point', coordinates: [...request.location.coordinates] }
+    };
+  }
+
+  // Update the help request
+  updateHelpRequest(): void {
+    if (!this.requestToEditId) return;
+
+    this.helpRequestService.updateHelpRequest(this.requestToEditId, this.newRequest).subscribe(() => {
+      this.fetchHelpRequests(); // Refresh the list after updating
+      this.resetForm();
+    });
+  }
+
+  // Cancel edit and reset the form
+  cancelEdit(): void {
+    this.resetForm();
+  }
+
+  // Reset form and clear edit mode
+  private resetForm(): void {
+    this.newRequest = { name: '', description: '', location: { type: 'Point', coordinates: [0, 0] } };
+    this.editMode = false;
+    this.requestToEditId = null;
+  }
 }

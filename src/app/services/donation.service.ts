@@ -24,4 +24,7 @@ export class DonationService {
   deleteDonation(id: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
+  updateDonation(id:any,donation: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/${id}`, donation);
+  }
 }

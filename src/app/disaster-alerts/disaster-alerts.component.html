@@ -1,60 +1,62 @@
-
-
 <!-- Wrapper div to center the form and list -->
 <div class="alert-container">
   <div class="form-container">
-  <form (ngSubmit)="createAlert()" class="alert-form">
-    <h1>Disaster Alerts</h1>
-    <label for="type">Alert Type</label>
-    <input
-      id="type"
-      type="text"
-      [(ngModel)]="newAlert.type"
-      name="type"
-      placeholder="Type"
-      required
-    />
-    
-    <label for="details">Details</label>
-    <textarea
-      id="details"
-      [(ngModel)]="newAlert.details"
-      name="details"
-      placeholder="Details"
-      required
-    ></textarea>
-    
-    <label for="longitude">Longitude</label>
-    <input
-      id="longitude"
-      type="number"
-      [(ngModel)]="newAlert.location.coordinates[0]"
-      name="longitude"
-      placeholder="Longitude"
-      required
-    />
-    
-    <label for="latitude">Latitude</label>
-    <input
-      id="latitude"
-      type="number"
-      [(ngModel)]="newAlert.location.coordinates[1]"
-      name="latitude"
-      placeholder="Latitude"
-      required
-    />
-    
-    <button type="submit">Create Alert</button>
-  </form>
+    <form (ngSubmit)="editMode ? updateAlert() : createAlert()" class="alert-form">
+      <h1>Disaster Alerts</h1>
 
-  <ul class="alert-list">
-    <li *ngFor="let alert of alerts" class="alert-item">
-      <strong>{{ alert.type }}</strong> - {{ alert.details }}
-      <br />
-      Coordinates: {{ alert.location.coordinates[0] }}, {{ alert.location.coordinates[1] }}
-      <!-- Add buttons for update and delete actions -->
-      <button (click) ="deleteDonation(alert._id)">Delete</button>
-    </li>
-  </ul>
-</div>
+      <label for="type">Alert Type</label>
+      <input
+        id="type"
+        type="text"
+        [(ngModel)]="newAlert.type"
+        name="type"
+        placeholder="Type"
+        required
+      />
+
+      <label for="details">Details</label>
+      <textarea
+        id="details"
+        [(ngModel)]="newAlert.details"
+        name="details"
+        placeholder="Details"
+        required
+      ></textarea>
+
+      <label for="longitude">Longitude</label>
+      <input
+        id="longitude"
+        type="number"
+        [(ngModel)]="newAlert.location.coordinates[0]"
+        name="longitude"
+        placeholder="Longitude"
+        required
+      />
+
+      <label for="latitude">Latitude</label>
+      <input
+        id="latitude"
+        type="number"
+        [(ngModel)]="newAlert.location.coordinates[1]"
+        name="latitude"
+        placeholder="Latitude"
+        required
+      />
+
+      <button type="submit">{{ editMode ? 'Update Alert' : 'Create Alert' }}</button>
+      <button *ngIf="editMode" (click)="cancelEdit()" type="button">Cancel</button>
+    </form>
+
+    <ul class="alert-list">
+      <li *ngFor="let alert of alerts" class="alert-item">
+        <strong>{{ alert.type }}</strong> - {{ alert.details }}
+        <br />
+        Coordinates: {{ alert.location.coordinates[0] }}, {{ alert.location.coordinates[1] }}
+        
+        <!-- Add buttons for edit and delete actions -->
+        <button (click)="editAlert(alert)">Edit</button>
+        <button (click)="deleteAlert(alert._id)">Delete</button>
+      </li>
+    </ul>
+  </div>
 </div>
