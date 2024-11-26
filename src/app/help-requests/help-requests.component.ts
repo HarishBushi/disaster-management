@@ -10,7 +10,7 @@ export class HelpRequestsComponent implements OnInit {
   newRequest = {
     name: '',
     description: '',
-    location: { type: 'Point', coordinates: [0, 0] }
+    location: ''
   };
 
   helpRequests: any[] = [];
@@ -49,7 +49,7 @@ export class HelpRequestsComponent implements OnInit {
     this.newRequest = {
       name: request.name,
       description: request.description,
-      location: { type: 'Point', coordinates: [...request.location.coordinates] }
+      location: request.location
     };
   }
 
@@ -70,7 +70,7 @@ export class HelpRequestsComponent implements OnInit {
 
   // Reset form and clear edit mode
   private resetForm(): void {
-    this.newRequest = { name: '', description: '', location: { type: 'Point', coordinates: [0, 0] } };
+    this.newRequest = { name: '', description: '', location: '' };
     this.editMode = false;
     this.requestToEditId = null;
   }

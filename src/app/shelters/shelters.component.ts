@@ -11,7 +11,7 @@ export class SheltersComponent implements OnInit {
   newShelter = {
     name: '',
     address: '',
-    location: { type: 'Point', coordinates: [0, 0] },
+    location: '',
     capacity: 0,
   };
 
@@ -45,7 +45,7 @@ export class SheltersComponent implements OnInit {
     this.newShelter = {
       name: shelter.name,
       address: shelter.address,
-      location: { type: 'Point', coordinates: [...shelter.location.coordinates] },
+      location: shelter.location,
       capacity: shelter.capacity,
     };
   }
@@ -73,7 +73,7 @@ export class SheltersComponent implements OnInit {
     this.newShelter = {
       name: '',
       address: '',
-      location: { type: 'Point', coordinates: [0, 0] },
+      location: '',
       capacity: 0,
     };
     this.editMode = false;

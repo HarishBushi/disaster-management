@@ -13,7 +13,7 @@ export class DisasterAlertsComponent implements OnInit {
   newAlert: IDisasterAlert = {
     type: '',
     details: '',
-    location: { type: 'Point', coordinates: [0, 0] },
+    location: '',
     createdAt: new Date(),
   };
   editMode = false;
@@ -51,7 +51,7 @@ export class DisasterAlertsComponent implements OnInit {
     this.newAlert = {
       type: alert.type,
       details: alert.details,
-      location: { ...alert.location },
+      location: alert.location ,
       createdAt: alert.createdAt,
     };
   }
@@ -73,7 +73,7 @@ export class DisasterAlertsComponent implements OnInit {
 
   // Reset form and clear edit mode
   private resetForm(): void {
-    this.newAlert = { type: '', details: '', location: { type: 'Point', coordinates: [0, 0] }, createdAt: new Date() };
+    this.newAlert = { type: '', details: '', location: '', createdAt: new Date() };
     this.editMode = false;
     this.alertToEditId = null;
   }

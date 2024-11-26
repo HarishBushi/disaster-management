@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class HelpRequestService {
-  private apiUrl = 'http://localhost:3000/api/help-requests';  // Your backend URL
+  private apiUrl = 'http://localhost:5000/api/help-requests';  // Your backend URL
 
   constructor(private http: HttpClient) {}
 

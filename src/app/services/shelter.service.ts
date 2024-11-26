@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ShelterService {
-  private apiUrl = 'http://localhost:3000/api/shelters'; // Adjust the URL based on your backend API
+  private apiUrl = 'http://localhost:5000/api/shelters'; // Adjust the URL based on your backend API
 
   constructor(private http: HttpClient) {}
 

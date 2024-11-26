@@ -23,17 +23,17 @@
         required
       ></textarea>
 
-      <label for="longitude">Longitude</label>
+      <label for="longitude">Location</label>
       <input
         id="longitude"
-        type="number"
-        [(ngModel)]="newAlert.location.coordinates[0]"
+        type="text"
+        [(ngModel)]="newAlert.location"
         name="longitude"
-        placeholder="Longitude"
+        placeholder="Location"
         required
       />
 
-      <label for="latitude">Latitude</label>
+      <!-- <label for="latitude">Latitude</label>
       <input
         id="latitude"
         type="number"
@@ -41,7 +41,7 @@
         name="latitude"
         placeholder="Latitude"
         required
-      />
+      /> -->
 
       <button type="submit">{{ editMode ? 'Update Alert' : 'Create Alert' }}</button>
       <button *ngIf="editMode" (click)="cancelEdit()" type="button">Cancel</button>
@@ -51,7 +51,7 @@
       <li *ngFor="let alert of alerts" class="alert-item">
         <strong>{{ alert.type }}</strong> - {{ alert.details }}
         <br />
-        Coordinates: {{ alert.location.coordinates[0] }}, {{ alert.location.coordinates[1] }}
+        Location: {{ alert.location }}
         
         <!-- Add buttons for edit and delete actions -->
         <button (click)="editAlert(alert)">Edit</button>

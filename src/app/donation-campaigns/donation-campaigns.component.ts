@@ -49,9 +49,11 @@ export class DonationCampaignsComponent implements OnInit {
     this.donationToEditId = donation._id;
     this.newDonation = { 
       title: donation.title,
-      description: donation.description,
       amount: donation.amount,
-      raisedAmount: donation.raisedAmount 
+      raisedAmount: donation.raisedAmount,
+      description: donation.description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ,
+
+
     };
   }
 

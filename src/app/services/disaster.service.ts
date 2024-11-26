@@ -7,7 +7,7 @@ import { IDisasterAlert } from './disaster-alert.interface'; // Create this inte
   providedIn: 'root',
 })
 export class DisasterService {
-  private apiUrl = 'http://localhost:3000/api/alerts'; // Your backend URL
+  private apiUrl = 'http://localhost:5000/api/alerts'; // Your backend URL
 
   constructor(private http: HttpClient) {}
 

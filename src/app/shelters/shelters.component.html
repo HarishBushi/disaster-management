@@ -23,17 +23,17 @@
         required
       />
 
-      <label for="longitude">Longitude</label>
+      <label for="longitude">Near By Location</label>
       <input
         id="longitude"
-        type="number"
-        [(ngModel)]="newShelter.location.coordinates[0]"
+        type="text"
+        [(ngModel)]="newShelter.location"
         name="longitude"
-        placeholder="Longitude"
+        placeholder="Location"
         required
       />
 
-      <label for="latitude">Latitude</label>
+      <!-- <label for="latitude">Latitude</label>
       <input
         id="latitude"
         type="number"
@@ -41,7 +41,7 @@
         name="latitude"
         placeholder="Latitude"
         required
-      />
+      /> -->
 
       <label for="capacity">Capacity</label>
       <input
@@ -61,7 +61,7 @@
       <li *ngFor="let shelter of shelters" class="shelter-item">
         <strong>{{ shelter.name }}</strong> - {{ shelter.address }} 
         <br />
-        Coordinates: {{ shelter.location.coordinates[0] }}, {{ shelter.location.coordinates[1] }} 
+        Near By Location: {{ shelter.location}} 
         <br />
         Capacity: {{ shelter.capacity }}
         <button (click)="editShelter(shelter)">Edit</button>

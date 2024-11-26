@@ -9,11 +9,11 @@
       <label for="description">Describe the Help Needed</label>
       <textarea [(ngModel)]="newRequest.description" name="description" placeholder="Describe the help needed" required></textarea>
 
-      <label for="longitude">Longitude</label>
-      <input type="number" [(ngModel)]="newRequest.location.coordinates[0]" name="longitude" placeholder="Longitude" required />
+      <label for="longitude">Location</label>
+      <input type="text" [(ngModel)]="newRequest.location" name="longitude" placeholder="Location" required />
 
-      <label for="latitude">Latitude</label>
-      <input type="number" [(ngModel)]="newRequest.location.coordinates[1]" name="latitude" placeholder="Latitude" required />
+      <!-- <label for="latitude">Location</label>
+      <input type="number" [(ngModel)]="newRequest.location.coordinates[1]" name="latitude" placeholder="Latitude" required /> -->
 
       <button type="submit">{{ editMode ? 'Update Request' : 'Submit Request' }}</button>
       <button *ngIf="editMode" type="button" (click)="cancelEdit()">Cancel</button>
@@ -22,7 +22,7 @@
     <ul class="help-request-list">
       <li *ngFor="let request of helpRequests" class="help-request-item">
         <strong>{{ request.name }}</strong>: {{ request.description }} <br />
-        Location: {{ request.location.coordinates[0] }}, {{ request.location.coordinates[1] }}
+        Location: {{ request.location }}
         <button (click)="editHelpRequest(request)">Edit</button>
         <button (click)="deleteHelpRequest(request._id)">Delete</button>
       </li>
