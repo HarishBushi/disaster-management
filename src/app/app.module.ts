@@ -8,6 +8,8 @@ import { SheltersComponent } from './shelters/shelters.component'; // Check the 
 import { HelpRequestsComponent } from './help-requests/help-requests.component';
 import { DonationCampaignsComponent } from './donation-campaigns/donation-campaigns.component';
 import { HttpClientModule } from '@angular/common/http';
+import { GoogleMapComponent } from './google-map/google-map.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [
@@ -15,13 +17,15 @@ import { HttpClientModule } from '@angular/common/http';
     DisasterAlertsComponent,
     SheltersComponent,
     HelpRequestsComponent,
-    DonationCampaignsComponent
+    DonationCampaignsComponent,
+    GoogleMapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule, // Ensure FormsModule is imported
-    HttpClientModule
+    HttpClientModule,
+    GoogleMapsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
